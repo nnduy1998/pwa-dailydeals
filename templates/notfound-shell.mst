@@ -1,5 +1,5 @@
 {{> templates/open-document}}
-    <title>Siminia -- Not Found</title>
+    <title>Venia -- Not Found</title>
   {{> templates/open-body }}
     <div id="root">
         Not found!

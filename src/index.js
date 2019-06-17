@@ -5,8 +5,9 @@ import { Util, WindowSizeContextProvider } from '@magento/peregrine';
 import { Adapter } from 'src/drivers';
 import store from 'src/store';
 import app from 'src/actions/app';
-import App from 'src/simi';
+import App from 'src/components/App';
 import './index.css';
+import { ToastContextProvider } from '@magento/peregrine';
 
 const { BrowserPersistence } = Util;
 const apiBase = new URL('/graphql', location.origin).toString();
@@ -37,7 +38,9 @@ ReactDOM.render(
         store={store}
     >
         <WindowSizeContextProvider>
-            <App />
+            <ToastContextProvider>
+                <App />
+            </ToastContextProvider>
         </WindowSizeContextProvider>
     </Adapter>,
     document.getElementById('root')

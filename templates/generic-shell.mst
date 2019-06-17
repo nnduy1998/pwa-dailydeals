@@ -1,9 +1,9 @@
 {{> templates/open-document}}
     {{#model}}
-    <title>{{title}} - Siminia</title>
+    <title>{{title}} - Venia</title>
     {{/model}}
     {{^model}}
-    <title>Siminia</title>
+    <title>Venia</title>
     {{/model}}
   {{> templates/open-body }}
     <div id="root">

@@ -22,7 +22,7 @@ const themePaths = {
     output: path.resolve(__dirname, 'dist')
 };
 
-const rootComponentsDirs = ['./src/simi/core/RootComponents/'];
+const rootComponentsDirs = ['./src/RootComponents/'];
 const libs = [
     'apollo-cache-inmemory',
     'apollo-cache-persist',
@@ -170,8 +170,9 @@ module.exports = async function(env) {
             new WebpackAssetsManifest({
                 output: 'asset-manifest.json',
                 entrypoints: true,
+                publicPath: '/',
                 // Add explicit properties to the asset manifest for
-                // siminia-upward.yml to use when evaluating app shell templates.
+                // venia-upward.yml to use when evaluating app shell templates.
                 transform(assets) {
                     // All RootComponents go to prefetch, and all client scripts
                     // go to load.
