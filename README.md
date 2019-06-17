@@ -41,10 +41,6 @@ yarn install
 yarn run build
 ```
 ## 4. Run watch/stage
-Make empty directory for RootComponents if get issue running watch command
-```
-mkdir packages/simi-studio/src/RootComponents
-```
 To run watch
 ```
 yarn run watch:simi-studio
