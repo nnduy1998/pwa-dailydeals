@@ -38,6 +38,7 @@ cd  packages
 git clone https://github.com/Simicart/simi-studio
 cd ..
 yarn install
+yarn run build
 ```
 ## 4. Run watch/stage
 Make empty directory for RootComponents if get issue running watch command
@@ -50,6 +51,5 @@ yarn run watch:simi-studio
 ```
 To run production
 ```
-yarn run build
 NODE_ENV=production PORT=8080 npm run stage:simi-studio
 ```
