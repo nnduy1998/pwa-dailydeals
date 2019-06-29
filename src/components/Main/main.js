@@ -29,11 +29,11 @@ class Main extends Component {
 
     render() {
         const { classes, props } = this;
-        const { children, hasBeenOffline, isOnline } = props;
+        const { children } = props;
 
         return (
             <main className={classes.root}>
-                <Header hasBeenOffline={hasBeenOffline} isOnline={isOnline} />
+                <Header />
                 <div className={classes.page}>{children}</div>
                 <Footer />
             </main>

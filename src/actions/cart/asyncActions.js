@@ -213,7 +213,6 @@ export const removeItemFromCart = payload => {
         dispatch(actions.removeItem.request(payload));
 
         const { cart, user } = getState();
-        let isLastItem = false;
 
         try {
             const { cartId } = cart;
@@ -241,9 +240,12 @@ export const removeItemFromCart = payload => {
                 method: 'DELETE'
             });
 
+            // When removing the last item in the cart, perform a reset
+            // to prevent a bug where the next item added to the cart has
+            // a price of 0
             const cartItemCount = cart.details ? cart.details.items_count : 0;
             if (cartItemCount === 1) {
-                isLastItem = true;
+                await clearCartId();
             }
 
             dispatch(
@@ -281,15 +283,7 @@ export const removeItemFromCart = payload => {
             }
         }
 
-        // When removing the last item in the cart, perform a reset of the Cart ID
-        // and create a new cart to prevent a bug where the next item added to the
-        // cart has a price of 0. Otherwise refresh cart details to get updated totals.
-        if (isLastItem) {
-            await clearCartId();
-            dispatch(createCart());
-        } else {
-            await dispatch(getCartDetails({ forceRefresh: true }));
-        }
+        await dispatch(getCartDetails({ forceRefresh: true }));
     };
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@simicart/simi-studio",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -9,6 +9,9 @@
   "browser": {
     "@magento/venia-drivers": "src/drivers"
   },
+  "bin": {
+    "venia": "./bin/venia.js"
+  },
   "scripts": {
     "build": "yarn run clean && yarn run build:esm && yarn run validate-queries && yarn run build:prod",
     "build:analyze": "yarn run clean && mkdir dist && yarn run validate-queries && yarn run build:stats",
@@ -16,7 +19,7 @@
     "build:esm": "BABEL_ENV=development babel src --out-dir esm --root-mode 'upward' --source-maps --copy-files",
     "build:prod": "webpack -p --color --no-progress --profile --env.mode production",
     "clean": "rimraf dist esm",
-    "download-schema": "graphql get-schema --project venia --insecure",
+    "download-schema": "graphql get-schema --project venia",
     "now-build": "../../now-build.sh",
     "prepublishOnly": "yarn run build",
     "start": "node server.js",
@@ -35,8 +38,8 @@
   },
   "homepage": "https://github.com/magento-research/pwa-studio/tree/master/packages/venia-concept#readme",
   "dependencies": {
-    "@babel/runtime": "~7.4.2",
-    "@magento/peregrine": "~2.1.0",
+    "@babel/runtime": "~7.3.4",
+    "@magento/peregrine": "~3.0.0",
     "apollo-boost": "~0.1.28",
     "apollo-cache-inmemory": "~1.4.3",
     "apollo-cache-persist": "~0.1.1",
@@ -52,7 +55,7 @@
     "memoize-one": "~5.0.0",
     "prop-types": "~15.7.2",
     "react": "~16.8.3",
-    "react-apollo": "~2.5.5",
+    "react-apollo": "~2.5.3",
     "react-dom": "~16.8.3",
     "react-feather": "~1.1.6",
     "react-redux": "~6.0.1",
@@ -69,10 +72,10 @@
     "@babel/plugin-syntax-dynamic-import": "~7.2.0",
     "@babel/plugin-syntax-jsx": "~7.2.0",
     "@babel/plugin-transform-react-jsx": "~7.3.0",
-    "@babel/plugin-transform-runtime": "~7.4.4",
+    "@babel/plugin-transform-runtime": "~7.3.4",
     "@babel/preset-env": "~7.3.4",
-    "@magento/pwa-buildpack": "~2.1.0",
-    "@magento/upward-js": "~2.1.0",
+    "@magento/pwa-buildpack": "~3.0.0",
+    "@magento/upward-js": "~2.2.0",
     "@storybook/react": "~4.1.13",
     "babel-core": "~7.0.0-bridge.0",
     "babel-jest": "~24.1.0",
@@ -80,7 +83,6 @@
     "babel-plugin-dynamic-import-node": "~2.2.0",
     "babel-plugin-graphql-tag": "~2.0.0",
     "chalk": "~2.4.2",
-    "css-loader": "~2.1.1",
     "dotenv": "~6.2.0",
     "envalid": "~4.2.2",
     "enzyme": "~3.9.0",

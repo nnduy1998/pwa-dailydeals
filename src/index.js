@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { setContext } from 'apollo-link-context';
-import { Util, WindowSizeContextProvider } from '@magento/peregrine';
+import { Util } from '@magento/peregrine';
+
 import { Adapter } from 'src/drivers';
 import store from 'src/store';
 import app from 'src/actions/app';
 import App from 'src/components/App';
 import './index.css';
-import { ToastContextProvider } from '@magento/peregrine';
 
 const { BrowserPersistence } = Util;
 const apiBase = new URL('/graphql', location.origin).toString();
@@ -37,11 +37,7 @@ ReactDOM.render(
         apollo={{ link: authLink.concat(Adapter.apolloLink(apiBase)) }}
         store={store}
     >
-        <WindowSizeContextProvider>
-            <ToastContextProvider>
-                <App />
-            </ToastContextProvider>
-        </WindowSizeContextProvider>
+        <App />
     </Adapter>,
     document.getElementById('root')
 );

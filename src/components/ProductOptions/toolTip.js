@@ -36,12 +36,6 @@ class Tooltip extends Component {
         isShowing: false
     };
 
-    componentWillUnmount() {
-        if (this.timeoutId) {
-            window.clearTimeout(this.timeoutId);
-        }
-    }
-
     /*
      *  Close the tooltip on the next tick.
      *  Unfortunately this is necessary because another child of ours may have received focus

@@ -14,6 +14,5 @@ export const executeSearch = (query, history, categoryId) =>
         let searchQuery = `query=${query}`;
         if (categoryId) searchQuery += `&category=${categoryId}`;
         history.push(`/search.html?${searchQuery}`);
-        dispatch(catalogActions.filterOption.clear());
         dispatch(actions.executeSearch(query));
     };

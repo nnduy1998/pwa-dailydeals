@@ -3,12 +3,6 @@ function validateEnvironment(env) {
     const { str, bool, url } = envalid;
 
     const validation = {
-        IMAGE_OPTIMIZING_ORIGIN: str({
-            choices: ['backend', 'onboard'],
-            desc:
-                'Servic responsible for optimizing images. Set to "backend" to delegate image optimization tasks to the Magento backend, by rendering absolute image URLs to that backend. If the Magento instance uses Fastly IO, then "backend" is strongly recommended. Set to "onboard" to use relative paths for images, and force any absolute image URLs pointing to the backend to be relative instead. This forces use of the onboard PWA Studio Staging Server image optimizer.',
-            default: 'onboard'
-        }),
         IMAGE_SERVICE_PATH: str({
             desc:
                 'Root path to mount the onboard image optimization service in the DevServer and staging server.',
@@ -35,6 +29,18 @@ function validateEnvironment(env) {
                 'Filename to use when autogenerating a service worker to be served at root.',
             example: 'sw.js',
             default: 'sw.js'
+        }),
+        MAGENTO_BACKEND_MEDIA_PATH_PRODUCT: str({
+            desc:
+                'URL path where the PWA expects Magento to serve product media.',
+            example: '/media/catalog/product',
+            default: '/media/catalog/product'
+        }),
+        MAGENTO_BACKEND_MEDIA_PATH_CATEGORY: str({
+            desc:
+                'URL path where the PWA expects Magento to serve category media.',
+            example: '/media/catalog/category',
+            default: '/media/catalog/category'
         }),
         MAGENTO_BUILDPACK_PROVIDE_SECURE_HOST: bool({
             desc:
