@@ -16,7 +16,7 @@ workspaces:
 
   "workspaces": [
 ...
-    "packages/upward-spec",
+    "packages/venia-ui",
     "packages/simi-studio"
   ],
 
@@ -27,9 +27,9 @@ scripts:
 ```
   "scripts": {
 	...
-    "watch:venia": "yarn workspace @magento/venia-concept run watch; cd - >/dev/null",
-    "watch:simi-studio": "yarn workspace @magento/simi-studio run watch",
-    "stage:simi-studio": "yarn workspace @magento/simi-studio run start"
+    "watch:venia": "yarn venia run watch",
+    "watch:simi-studio": "yarn workspace @simicart/simi-studio run watch",
+    "stage:simi-studio": "yarn workspace @simicart/simi-studio run start"
   },
 ```
 ## 3. Clone simi-studio
