@@ -7,7 +7,6 @@ This Project's purpose is to help any new developer create a new pwa-studio proj
 git clone https://github.com/magento-research/pwa-studio/
 cd pwa-studio
 git checkout release/4.0
-cp packages/venia-concept/.env.dist packages/venia-concept/.env
 ```
 
 ## 2. Modify package.json
@@ -29,8 +28,8 @@ scripts:
   "scripts": {
 	...
     "watch:venia": "yarn workspace @magento/venia-concept run watch; cd - >/dev/null",
-    "watch:simi-studio": "yarn workspace @simicart/simi-studio run watch; cd - >/dev/null",
-    "stage:simi-studio": "yarn workspace @simicart/simi-studio run start; cd - >/dev/null"
+    "watch:simi-studio": "yarn workspace @magento/simi-studio run watch",
+    "stage:simi-studio": "yarn workspace @magento/simi-studio run start"
   },
 ```
 ## 3. Clone simi-studio
