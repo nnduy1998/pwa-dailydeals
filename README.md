@@ -6,7 +6,7 @@ This Project's purpose is to help any new developer create a new pwa-studio proj
 ```
 git clone https://github.com/magento-research/pwa-studio/
 cd pwa-studio
-git checkout v3.0.0
+git checkout release/4.0
 cp packages/venia-concept/.env.dist packages/venia-concept/.env
 ```
 
