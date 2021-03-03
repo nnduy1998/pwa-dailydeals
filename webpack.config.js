@@ -1,20 +1,26 @@
-const { configureWebpack } = require('@magento/pwa-buildpack');
+const {
+    configureWebpack,
+    graphQL: { getMediaURL, getStoreConfigData, getPossibleTypes }
+} = require('@magento/pwa-buildpack');
 const { DefinePlugin } = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MediaBackendUrlFetcherPlugin = require('./src/MediaBackendURLFetcherPlugin');
 
 module.exports = async env => {
+    const mediaUrl = await getMediaURL();
+    const storeConfigData = await getStoreConfigData();
+
+    global.MAGENTO_MEDIA_BACKEND_URL = mediaUrl;
+    global.LOCALE = storeConfigData.locale.replace('_', '-');
+
+    const possibleTypes = await getPossibleTypes();
+
     const config = await configureWebpack({
         context: __dirname,
         vendor: [
-            'apollo-cache-inmemory',
+            '@apollo/client',
             'apollo-cache-persist',
-            'apollo-client',
-            'apollo-link-context',
-            'apollo-link-http',
             'informed',
             'react',
-            'react-apollo',
             'react-dom',
             'react-feather',
             'react-redux',
@@ -24,16 +30,8 @@ module.exports = async env => {
             'redux-thunk'
         ],
         special: {
-            '@magento/peregrine': {
-                esModules: true,
-                cssModules: true
-            },
-            '@magento/venia-ui': {
-                cssModules: true,
-                esModules: true,
-                graphqlQueries: true,
-                rootComponents: true,
-                upward: true
+            'react-feather': {
+                esModules: true
             }
         },
         env
@@ -54,9 +52,13 @@ module.exports = async env => {
              * Make sure to add the same constants to
              * the globals object in jest.config.js.
              */
-            STORE_NAME: JSON.stringify('Venia')
+            POSSIBLE_TYPES: JSON.stringify(possibleTypes),
+            STORE_NAME: JSON.stringify('Venia'),
+            STORE_VIEW_LOCALE: JSON.stringify(global.LOCALE),
+            STORE_VIEW_CODE: process.env.STORE_VIEW_CODE
+                ? JSON.stringify(process.env.STORE_VIEW_CODE)
+                : JSON.stringify(storeConfigData.code)
         }),
-        new MediaBackendUrlFetcherPlugin(),
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './template.html',
