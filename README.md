@@ -6,6 +6,7 @@ This Project's purpose is to help any new developer create a new pwa-studio proj
 ```
 git clone https://github.com/Simicart/simi-studio
 cd simi-studio
+yarn install
 ```
 
 ## 2. Run
