@@ -1,6 +1,6 @@
 # simi-studio
 
-This Project's purpose is to help any new developer create a new pwa-studio project based on Venia concept and add our modules just via few simple steps. Following the guide below and then add our module base on guides for each of them.
+This Project's purpose is to help developers create a new pwa-studio project based on Venia concept and add our [PWA Studio modules](https://www.simicart.com/blog/simicart-partner-mageplaza-pwa-studio-extensions/) via just a few simple steps.
 
 ## 1. Clone pwa-studio
 ```
