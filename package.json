@@ -114,7 +114,8 @@
     "workbox-precaching": "~6.0.2",
     "workbox-routing": "~6.0.2",
     "workbox-strategies": "~6.0.2",
-    "workbox-webpack-plugin": "~6.0.2"
+    "workbox-webpack-plugin": "~6.0.2",
+    "@magento/venia-sample-backends": "~0.0.1"
   },
   "optionalDependencies": {
     "sharp": "~0.23.3"
