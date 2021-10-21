@@ -1606,6 +1606,11 @@
   resolved "https://registry.yarnpkg.com/@magento/upward-security-headers/-/upward-security-headers-1.0.4.tgz#bfec633719cc072f6433585c98dd312baaab0b99"
   integrity sha512-237/vOmGHa4ODWOa0diLgToJaXCHXydwp1yv77JC3Z+OB534xyNcWKuBQEwB+4Fb3ZWYQ9OsKrO7+2p6G4KReA==
 
+"@magento/venia-sample-backends@~0.0.1":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@magento/venia-sample-backends/-/venia-sample-backends-0.0.4.tgz#6474d599b96a2e155721a9ba362fe4694ea184f7"
+  integrity sha512-I7ZOBvIgvRxZbguhuNhnwPmPbkJQIYOISrrO+NZdzhAeSn1rXZD0y4OyQH4XhOddNgM/dqPlbV6WH2bgQDIi+g==
+
 "@magento/venia-ui@~8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@magento/venia-ui/-/venia-ui-8.0.0.tgz#8670ea6e25a1dfc168cf0cfe9cfb9834e1c1bb4f"
@@ -2367,6 +2372,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@simicart/dailydeal@link:./@simicart/dailydeal":
+  version "0.0.0"
+  uid ""
+
 "@storybook/addons@6.1.21":
   version "6.1.21"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.1.21.tgz#94bb66fc51d1dfee80d0fe84f5b83c10045651b5"
@@ -2917,6 +2926,15 @@
   version "17.0.20"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.20.tgz#a4284b184d47975c71658cd69e759b6bd37c3b8c"
   integrity sha512-wWZrPlihslrPpcKyCSlmIlruakxr57/buQN1RjlIeaaTWDLtJkTtRW429MoQJergvVKc4IWBpRhWw7YNh/7GVA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^16.8.12":
+  version "16.14.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.18.tgz#b2bcea05ee244fde92d409f91bd888ca8e54b20f"
+  integrity sha512-eeyqd1mqoG43mI0TvNKy9QNf1Tjz3DEOsRP3rlPo35OeMIt05I+v9RR8ZvL2GuYZeF2WAcLXJZMzu6zdz3VbtQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3699,6 +3717,13 @@ atomic-sleep@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/atomic-sleep/-/atomic-sleep-1.0.0.tgz#eb85b77a601fc932cfe432c5acd364a9e2c9075b"
   integrity sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==
+
+auto-bind@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/auto-bind/-/auto-bind-2.1.1.tgz#8ae509671ecdfbd5009fc99b0f19ae9c3a2abf50"
+  integrity sha512-NUwV1i9D3vxxY1KnfZgSZ716d6ovY7o8LfOwLhGIPFBowIb6Ln6DBW64+jCqPzUznel2hRSkQnYQqvh7/ldw8A==
+  dependencies:
+    "@types/react" "^16.8.12"
 
 autoprefixer@^9.7.2:
   version "9.8.6"
@@ -11342,6 +11367,14 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-material-ui-carousel@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/react-material-ui-carousel/-/react-material-ui-carousel-2.3.5.tgz#c6b4514333564ff4d49d2447f6d67f6c7651e813"
+  integrity sha512-laiysIaA47rX0/lIVjprX5MHrDyjLxgzAsyBnG8OKgO2ad5o3Pg88PAmu6RlMy/L/H6PKFYQ8H5bAqpeZETeYw==
+  dependencies:
+    auto-bind "^2.1.1"
+    react-swipeable "^6.1.0"
+
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-3.1.1.tgz#329569eb7b287008f04fcbddb6370452ad3f9eac"
@@ -11423,6 +11456,17 @@ react-sizeme@^2.6.7:
     shallowequal "^1.1.0"
     throttle-debounce "^2.1.0"
 
+react-slick@^0.28.1:
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.28.1.tgz#12c18d991b59432df9c3757ba540a227b3fb85b9"
+  integrity sha512-JwRQXoWGJRbUTE7eZI1rGIHaXX/4YuwX6gn7ulfvUZ4vFDVQAA25HcsHSYaUiRCduTr6rskyIuyPMpuG6bbluw==
+  dependencies:
+    classnames "^2.2.5"
+    enquire.js "^2.1.6"
+    json2mq "^0.2.0"
+    lodash.debounce "^4.0.8"
+    resize-observer-polyfill "^1.5.0"
+
 react-slick@~0.25.2:
   version "0.25.2"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.25.2.tgz#56331b67d47d8bcfe2dceb6acab1c8fd5bd1f6bc"
@@ -11433,6 +11477,11 @@ react-slick@~0.25.2:
     json2mq "^0.2.0"
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
+
+react-swipeable@^6.1.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.2.0.tgz#057271cb7a6fb4af9d2a3f6d80ccdf33e2f64d47"
+  integrity sha512-nWQ8dEM8e/uswZLSIkXUsAnQmnX4MTcryOHBQIQYRMJFDpgDBSiVbKsz/BZVCIScF4NtJh16oyxwaNOepR6xSw==
 
 react-syntax-highlighter@^13.5.0:
   version "13.5.3"
