@@ -3,6 +3,7 @@ import { Price } from '@magento/peregrine';
 import defaultClasses from './dailyDeal.css';
 import { useRef, useEffect, useState } from 'react';
 import { useStoreConfig } from '../../talons/useStoreConfig';
+import moment from 'moment';
 
 const classes = defaultClasses;
 const convertDate = dateTo => {
@@ -36,7 +37,7 @@ const convertDate = dateTo => {
     new_date.toString();
     return new_date;
 };
-const calculateTimeLeft = dateTo => {
+const calculateTimeLeft = dateTo => { 
     const new_date = convertDate(dateTo);
     const countDownDate = new Date(new_date).getTime();
     const now = new Date().getTime();
@@ -77,9 +78,9 @@ const CountDownTimer = ({ dateTo }) => {
         interval = setInterval(() => {
             const totalSeconds = calculateTimeLeft(dateTo);
             let days = Math.floor(totalSeconds / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((totalSeconds / (1000 * 60 * 60)) % 24);
-            let minutes = Math.floor((totalSeconds / 1000 / 60) % 60);
-            let seconds = Math.floor((totalSeconds / 1000) % 60);
+            let hours = Math.floor((totalSeconds % (1000 * 60 * 60 * 24)/(1000 * 60 * 60)));
+            let minutes = Math.floor((totalSeconds % (1000 * 60 * 60)) /(1000 * 60));
+            let seconds = Math.floor((totalSeconds % (1000 * 60)) / 1000);
             if (totalSeconds < 0) {
                 clearInterval(interval.current);
             } else {

@@ -66,24 +66,25 @@ const ProductFullDetail = props => {
         deriveErrorMessage
     } = useProductDetails({ sku_product: props.product.sku });
     // console.log("Full detailsData",detailsData);
-    var mp_daily_deal1,
+    let mp_daily_deal,
         dateTo = null,
         timeLeft = null;
 
     if (detailsData) {
         detailsData.products.items.map(function(item) {
             if (item.mp_daily_deal) {
-                mp_daily_deal1 = item.mp_daily_deal;
+                mp_daily_deal = item.mp_daily_deal;
                 if (item.mp_daily_deal.date_to) {
                     dateTo = item.mp_daily_deal.date_to;
                     timeLeft = calculateTimeLeft(dateTo);
                 }
-                return { mp_daily_deal1, timeLeft, dateTo };
+                return { mp_daily_deal, timeLeft, dateTo };
             }
         });
     }
-    // console.log("Full mp_daily_deal1",mp_daily_deal1);
-    // console.log('timeLeft:' + timeLeft);
+    //  console.log("Full mp_daily_deal",mp_daily_deal);
+    //  console.log("dateTo", dateTo);
+    //  console.log('timeLeft:' + timeLeft);
 
     const {
         breadcrumbCategoryId,
@@ -202,7 +203,7 @@ const ProductFullDetail = props => {
                     {timeLeft > 0 ? (
                         <div >
                             <DealPrice
-                                dealPrice={mp_daily_deal1.deal_price}
+                                dealPrice={mp_daily_deal.deal_price}
                                 regularPrice={productDetails.price.value}
                                 currencyCode={productDetails.price.currency}
                             />
@@ -218,7 +219,7 @@ const ProductFullDetail = props => {
                 {timeLeft > 0 ? (
                         <DiscountLabel
                             classes={classes}
-                            discountLabel={mp_daily_deal1.discount_label}
+                            discountLabel={mp_daily_deal.discount_label}
                         />
                     ) : null}
                 </section>
@@ -235,8 +236,8 @@ const ProductFullDetail = props => {
                 <section className={classes.quantity}>
                 {timeLeft > 0 ? (
                         <ItemLeftSold
-                            dealQty={mp_daily_deal1.deal_qty}
-                            saleQty={mp_daily_deal1.sale_qty}
+                            dealQty={mp_daily_deal.deal_qty}
+                            saleQty={mp_daily_deal.sale_qty}
                         />
                     ) : null}
                     <h2 className={classes.quantityTitle}>
@@ -253,7 +254,7 @@ const ProductFullDetail = props => {
                 </section>
                 {timeLeft > 0 ? (
                     <CountDownTimer
-                        dateTo={mp_daily_deal1.date_to}
+                        dateTo={mp_daily_deal.date_to}
                         classes={classes}
                     />
                 ) : null}

@@ -32,6 +32,7 @@ const Carousel = props => {
         detailsLoading,
         deriveErrorMessage } = useProductDetails({ sku_product: skuDatas });
     // console.log("detailsData", detailsData)
+    const {items} = detailsData.products;
     var settings = {
         dots: false,
         infinite: true,
@@ -72,11 +73,11 @@ const Carousel = props => {
     return (<div className={classes.root}>
 
         <Slider {...settings}>
-            {detailsData.products.items.map(i => {
+            {items.map(item => {
                 return (
                     <GalleryItem
-                    key={i.id}
-                    item={i}
+                    key={item.id}
+                    item={item}
                 />
                 )
             })}
