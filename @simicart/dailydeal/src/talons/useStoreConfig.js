@@ -43,7 +43,7 @@ export const useStoreConfig = props => {
         error: storeConfigError,
         loading: storeConfigLoading,
         data: storeConfigData
-    } = useQuery(FETCH_STORE_CONFIG, {fetchPolicy: "cache-and-network"});
+    } = useQuery(FETCH_STORE_CONFIG, { fetchPolicy: "cache-and-network" });
 
     let storeConfigErrorMessage;
     if (storeConfigError) {

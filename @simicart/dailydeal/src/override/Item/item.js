@@ -6,10 +6,8 @@ import { UNCONSTRAINED_SIZE_KEY } from '@magento/peregrine/lib/talons/Image/useI
 import { useGalleryItem } from '@magento/peregrine/lib/talons/Gallery/useGalleryItem';
 import { transparentPlaceholder } from '@magento/peregrine/lib/util/images';
 import resourceUrl from '@magento/peregrine/lib/util/makeUrl';
-
-import { useStyle } from '@magento/venia-ui/lib/classify';
 import Image from '@magento/venia-ui/lib/components/Image';
-import defaultClasses from '@magento/venia-ui/lib/components/Gallery/item.css';
+import defaultClasses from './item.css';
 import WishlistGalleryButton from '@magento/venia-ui/lib/components/Wishlist/AddToListButton';
 import {
     DealPrice,
@@ -19,7 +17,7 @@ import {
     convertDate,
     ItemLeftSold
 } from '../DailyDeals/dailyDeal'
-import { useRef, useEffect, useState } from 'react';
+
 
 // The placeholder image is 4:5, so we should make sure to size our product
 // images appropriately.
@@ -49,11 +47,11 @@ const ItemPlaceholder = ({ classes }) => (
 );
 
 const GalleryItem = props => {
-    const { handleLinkClick, item, wishlistButtonProps } = useGalleryItem(
+    const { handleLinkClick, flag, item, wishlistButtonProps } = useGalleryItem(
         props
     );
-    // console.log("mp_daily_deal", item.mp_daily_deal);
-    const classes = useStyle(defaultClasses, props.classes);
+
+    const classes = defaultClasses
 
     if (!item) {
         return <ItemPlaceholder classes={classes} />;
@@ -71,8 +69,6 @@ const GalleryItem = props => {
     if (item.mp_daily_deal != null) {
         const dateTo = item.mp_daily_deal.date_to;
         const timeLeft = calculateTimeLeft(dateTo);
-        // console.log("dateTo", dateTo);
-        // console.log("timeLeft", timeLeft)
         return (
             <div className={classes.root}>
                 <Link
@@ -110,7 +106,7 @@ const GalleryItem = props => {
                         />
                     </div>
                 )}
-                
+                {(timeLeft > 0 && flag !== 1) ? <CountDownTimer dateTo={dateTo} /> : null}
             </div>
         );
     } else {

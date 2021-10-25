@@ -3,7 +3,6 @@ import { Price } from '@magento/peregrine';
 import defaultClasses from './dailyDeal.css';
 import { useRef, useEffect, useState } from 'react';
 import { useStoreConfig } from '../../talons/useStoreConfig';
-import moment from 'moment';
 
 const classes = defaultClasses;
 const convertDate = dateTo => {
@@ -37,13 +36,15 @@ const convertDate = dateTo => {
     new_date.toString();
     return new_date;
 };
-const calculateTimeLeft = dateTo => { 
+
+const calculateTimeLeft = dateTo => {
     const new_date = convertDate(dateTo);
     const countDownDate = new Date(new_date).getTime();
     const now = new Date().getTime();
     const totalSeconds = countDownDate - now;
     return totalSeconds;
 };
+
 const DealPrice = ({ dealPrice, regularPrice, currencyCode }) => {
     return (
         <span className={classes.productPriceOld}>
@@ -65,21 +66,13 @@ const CountDownTimer = ({ dateTo }) => {
         storeConfigLoading,
         storeConfigError
     } = useStoreConfig();
-    
-    const {mp_dailydeal_clock_style, 
-        mp_dailydeal_countdown_outer_color, 
-        mp_dailydeal_countdown_inner_color,
-        mp_dailydeal_countdown_number_color,
-        mp_dailydeal_countdown_text} = storeConfigData.storeConfig
-    
-    
     let interval = useRef();
     const startTimer = () => {
         interval = setInterval(() => {
             const totalSeconds = calculateTimeLeft(dateTo);
             let days = Math.floor(totalSeconds / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((totalSeconds % (1000 * 60 * 60 * 24)/(1000 * 60 * 60)));
-            let minutes = Math.floor((totalSeconds % (1000 * 60 * 60)) /(1000 * 60));
+            let hours = Math.floor((totalSeconds % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
+            let minutes = Math.floor((totalSeconds % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((totalSeconds % (1000 * 60)) / 1000);
             if (totalSeconds < 0) {
                 clearInterval(interval.current);
@@ -99,26 +92,36 @@ const CountDownTimer = ({ dateTo }) => {
         };
     }, []);
 
-    return (
-        <div className={classes.p_20}>
-            <div style={{backgroundColor:`${mp_dailydeal_countdown_outer_color}`}} className={classes[`${mp_dailydeal_clock_style}`]}>
-                <span style={{color:`${mp_dailydeal_countdown_number_color}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt1`]}>{adays}</span>
-                <span style={{color:`${mp_dailydeal_countdown_text}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt2`]}>Days</span>
+    if (storeConfigData) {
+        const { mp_dailydeal_clock_style,
+            mp_dailydeal_countdown_outer_color,
+            mp_dailydeal_countdown_inner_color,
+            mp_dailydeal_countdown_number_color,
+            mp_dailydeal_countdown_text } = storeConfigData.storeConfig
+        return (
+            <div className={classes.p_20}>
+                <div style={{ backgroundColor: `${mp_dailydeal_countdown_outer_color}` }} className={classes[`${mp_dailydeal_clock_style}`]}>
+                    <span style={{ color: `${mp_dailydeal_countdown_number_color}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt1`]}>{adays}</span>
+                    <span style={{ color: `${mp_dailydeal_countdown_text}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt2`]}>Days</span>
+                </div>
+                <div style={{ backgroundColor: `${mp_dailydeal_countdown_outer_color}` }} className={classes[`${mp_dailydeal_clock_style}`]}>
+                    <span style={{ color: `${mp_dailydeal_countdown_number_color}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt1`]}>{ahours}</span>
+                    <span style={{ color: `${mp_dailydeal_countdown_text}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt2`]}>Hours</span>
+                </div>
+                <div style={{ backgroundColor: `${mp_dailydeal_countdown_outer_color}` }} className={classes[`${mp_dailydeal_clock_style}`]}>
+                    <span style={{ color: `${mp_dailydeal_countdown_number_color}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt1`]}>{aminutes}</span>
+                    <span style={{ color: `${mp_dailydeal_countdown_text}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt2`]}>Minutes</span>
+                </div>
+                <div style={{ backgroundColor: `${mp_dailydeal_countdown_outer_color}` }} className={classes[`${mp_dailydeal_clock_style}`]}>
+                    <span style={{ color: `${mp_dailydeal_countdown_number_color}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt1`]}>{aseconds}</span>
+                    <span style={{ color: `${mp_dailydeal_countdown_text}` }} className={classes[`${mp_dailydeal_clock_style}` + `-txt2`]}>Seconds</span>
+                </div>
             </div>
-            <div style={{backgroundColor:`${mp_dailydeal_countdown_outer_color}`}} className={classes[`${mp_dailydeal_clock_style}`]}>
-                <span style={{color:`${mp_dailydeal_countdown_number_color}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt1`]}>{ahours}</span>
-                <span style={{color:`${mp_dailydeal_countdown_text}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt2`]}>Hours</span>
-            </div>
-            <div style={{backgroundColor:`${mp_dailydeal_countdown_outer_color}`}} className={classes[`${mp_dailydeal_clock_style}`]}>
-                <span style={{color:`${mp_dailydeal_countdown_number_color}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt1`]}>{aminutes}</span>
-                <span style={{color:`${mp_dailydeal_countdown_text}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt2`]}>Minutes</span>
-            </div>
-            <div style={{backgroundColor:`${mp_dailydeal_countdown_outer_color}`}} className={classes[`${mp_dailydeal_clock_style}`]}>
-                <span style={{color:`${mp_dailydeal_countdown_number_color}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt1`]}>{aseconds}</span>
-                <span style={{color:`${mp_dailydeal_countdown_text}`}} className={classes[`${mp_dailydeal_clock_style}`+`-txt2`]}>Seconds</span>
-            </div>
-        </div>
-    );
+        );
+    } else {
+        return <div></div>;
+    }
+
 };
 
 const DiscountLabel = ({ discountLabel }) => {

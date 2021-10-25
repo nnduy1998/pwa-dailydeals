@@ -11,8 +11,7 @@ import CategoryTile from '@magento/venia-ui/lib/components/CategoryList/category
 import { useProductList } from '../../talons/useProductList';
 import { useProductDetails } from '../../talons/useProductDetail';
 import Gallery from '@magento/venia-ui/lib/components/Gallery';
-import GalleryItem from '../Item/item';
-import {calculateTimeLeft} from '../DailyDeals/dailyDeal'
+import { calculateTimeLeft } from '../DailyDeals/dailyDeal'
 
 
 // map Magento 2.3.1 schema changes to Venia 2.0.0 proptype shape to maintain backwards compatibility
@@ -37,35 +36,31 @@ const mapCategory = categoryItem => {
 
 const CategoryList = props => {
 
-    const {productListData,
+    const { productListData,
         productListLoading,
-        derivedErrorMessage} = useProductList();
-    //  console.log("productListData",productListData)
+        derivedErrorMessage } = useProductList();
+    
     const skuDatas = [];
     if (productListData) {
         var len = productListData.MpDailyDeals.items.length;
-        for (var i = 0; i < len; i++){   
+        for (var i = 0; i < len; i++) {
             let skuData = productListData.MpDailyDeals.items[i].product_sku
             let dateTo = productListData.MpDailyDeals.items[i].date_to
             const totalSeconds = calculateTimeLeft(dateTo);
-            if (totalSeconds > 0){
+            if (totalSeconds > 0) {
                 skuDatas.push(skuData);
             }
         }
-        // console.log(skuDatas);
+       
     }
-    
-    // console.log("skuDatas", skuDatas);
-    
-    const {detailsData,
+
+    const { detailsData,
         detailsLoading,
-        deriveErrorMessage} = useProductDetails({sku_product:skuDatas});
-    // console.log("detailsData",detailsData)
-    // if (detailsLoading) return 'Loading...';
-    // if (deriveErrorMessage) return `Error! ${error.message}`;
+        deriveErrorMessage } = useProductDetails({ sku_product: skuDatas });
+   
     const { id, title } = props;
-    const talonProps = useCategoryList({ 
-        id 
+    const talonProps = useCategoryList({
+        id
     });
 
     const { childCategories, error, loading } = talonProps;
@@ -115,15 +110,15 @@ const CategoryList = props => {
             );
         }
     }
-    
+
     return (
         <div className={classes.root}>
             {header}
-            {child}        
+            {child}
             {detailsData ? (
-                <Gallery items={detailsData.products.items}/>
-            ):(null)}
-            
+                <Gallery items={detailsData.products.items} />
+            ) : (null)}
+
         </div>
     );
 };

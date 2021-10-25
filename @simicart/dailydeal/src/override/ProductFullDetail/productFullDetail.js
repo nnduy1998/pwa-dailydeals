@@ -29,8 +29,7 @@ import {
     calculateTimeLeft,
     ItemLeftSold
 } from '../DailyDeals/dailyDeal';
-import { useRef, useEffect, useState } from 'react';
-import { useStoreConfig } from '../../talons/useStoreConfig';
+
 const WishlistButton = React.lazy(() => import('@magento/venia-ui/lib/components/Wishlist/AddToListButton'));
 const Options = React.lazy(() => import('@magento/venia-ui/lib/components/ProductOptions'));
 
@@ -54,24 +53,24 @@ const ProductFullDetail = props => {
 
     const labelData = props.product.mp_label_data;
 
-    const talonProps = useProductFullDetail({ 
+    const talonProps = useProductFullDetail({
         addConfigurableProductToCartMutation: ADD_CONFIGURABLE_MUTATION,
         addSimpleProductToCartMutation: ADD_SIMPLE_MUTATION,
-        product 
+        product
     });
-  
+
     const {
         detailsData,
         detailsLoading,
         deriveErrorMessage
     } = useProductDetails({ sku_product: props.product.sku });
-    // console.log("Full detailsData",detailsData);
+    
     let mp_daily_deal,
         dateTo = null,
         timeLeft = null;
 
     if (detailsData) {
-        detailsData.products.items.map(function(item) {
+        detailsData.products.items.map(function (item) {
             if (item.mp_daily_deal) {
                 mp_daily_deal = item.mp_daily_deal;
                 if (item.mp_daily_deal.date_to) {
@@ -82,9 +81,7 @@ const ProductFullDetail = props => {
             }
         });
     }
-    //  console.log("Full mp_daily_deal",mp_daily_deal);
-    //  console.log("dateTo", dateTo);
-    //  console.log('timeLeft:' + timeLeft);
+   
 
     const {
         breadcrumbCategoryId,
@@ -209,14 +206,14 @@ const ProductFullDetail = props => {
                             />
                         </div>
                     ) : (
-                    <p className={classes.productPrice}>
-                        <Price
-                            currencyCode={productDetails.price.currency}
-                            value={productDetails.price.value}
-                        />
-                    </p>
-                )}
-                {timeLeft > 0 ? (
+                        <p className={classes.productPrice}>
+                            <Price
+                                currencyCode={productDetails.price.currency}
+                                value={productDetails.price.value}
+                            />
+                        </p>
+                    )}
+                    {timeLeft > 0 ? (
                         <DiscountLabel
                             classes={classes}
                             discountLabel={mp_daily_deal.discount_label}
@@ -234,7 +231,7 @@ const ProductFullDetail = props => {
                 />
                 <section className={classes.options}>{options}</section>
                 <section className={classes.quantity}>
-                {timeLeft > 0 ? (
+                    {timeLeft > 0 ? (
                         <ItemLeftSold
                             dealQty={mp_daily_deal.deal_qty}
                             saleQty={mp_daily_deal.sale_qty}

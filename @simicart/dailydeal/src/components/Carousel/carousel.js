@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { mergeClasses } from '@magento/venia-ui/lib/classify';
 import { shape, string } from 'prop-types';
 import Slider from 'react-slick';
@@ -10,10 +10,11 @@ import GalleryItem from '../../override/Item/item';
 
 const Carousel = props => {
     const classes = mergeClasses(defaultClasses, props.classes);
+
     const { productListData,
         productListLoading,
         derivedErrorMessage } = useProductList();
-    // console.log("productListData", productListData)
+
     const skuDatas = [];
     if (productListData) {
         var len = productListData.MpDailyDeals.items.length;
@@ -26,13 +27,12 @@ const Carousel = props => {
             }
         }
     }
-    // console.log("skuDatas", skuDatas);
 
     const { detailsData,
         detailsLoading,
         deriveErrorMessage } = useProductDetails({ sku_product: skuDatas });
-    // console.log("detailsData", detailsData)
-    const {items} = detailsData.products;
+
+
     var settings = {
         dots: false,
         infinite: true,
@@ -42,7 +42,7 @@ const Carousel = props => {
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
-        
+
         responsive: [
             {
                 breakpoint: 1024,
@@ -70,20 +70,26 @@ const Carousel = props => {
             }
         ]
     };
-    return (<div className={classes.root}>
-
-        <Slider {...settings}>
-            {items.map(item => {
-                return (
-                    <GalleryItem
-                    key={item.id}
-                    item={item}
-                />
-                )
-            })}
-        </Slider>
-
-    </div>);
+    if (detailsData) {
+        const { items } = detailsData.products;
+        const flag = 1;
+        return (<div className={classes.root}>
+            <Slider {...settings}>
+                {items.map(item => {
+                    return (
+                        <GalleryItem
+                            key={item.id}
+                            item={item}
+                            flag={flag}
+                        />
+                    )
+                })}
+            </Slider>
+        </div>);
+    }
+    else {
+        return <div></div>
+    }
 }
 
 Carousel.propTypes = {

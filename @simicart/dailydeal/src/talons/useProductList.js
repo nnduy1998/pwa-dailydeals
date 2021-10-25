@@ -31,10 +31,10 @@ export const FETCH_LIST_PRODUCT = gql`
     `;
 
 export const useProductList = () => {
-    
-    const {error: productListError,
-        loading: productListLoading, 
-        data: productListData} = useQuery(FETCH_LIST_PRODUCT,{fetchPolicy: 'cache-and-network'});
+
+    const { error: productListError,
+        loading: productListLoading,
+        data: productListData } = useQuery(FETCH_LIST_PRODUCT, { fetchPolicy: 'cache-and-network' });
     let derivedErrorMessage;
     if (productListError) {
         const errorTarget = productListError;
@@ -50,7 +50,7 @@ export const useProductList = () => {
             derivedErrorMessage = errorTarget.message;
         }
     }
-    
+
     return {
         productListData,
         productListLoading,
